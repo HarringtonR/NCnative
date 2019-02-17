@@ -29,7 +29,7 @@ export default class News extends React.Component {
             <CardSection>
                 <Text style={styles.headerStyle}>{d.title}</Text>
                 <Text>{d.source.name}</Text>
-                <Image source={{uri: d.urlToImage}} style={{width: 100, height: 100}}/>
+                {/* <Image source={{uri: d.urlToImage}} style={{width: 100, height: 100}}/> */}
             </CardSection>
           </Card>
           
