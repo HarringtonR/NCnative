@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { CardSection, Card, Header } from '../common';
 import { ScrollView } from 'react-native';
 import Config from '../../config';
@@ -25,14 +25,16 @@ export default class News extends React.Component {
     if(this.state.apiDataLoaded) {
       return this.state.apiData.map((d, i) => {
         return (
-          <Card  key={i}>
-            <CardSection>
-                <Text style={styles.headerStyle}>{d.title}</Text>
-                <Text>{d.source.name}</Text>
-                {/* <Image source={{uri: d.urlToImage}} style={{width: 100, height: 100}}/> */}
-            </CardSection>
-          </Card>
-          
+          <TouchableOpacity  key={i}>
+            <Card >
+              <CardSection>
+                  <Text style={styles.headerStyle}>{d.title}</Text>
+                  <Text>{d.source.name}</Text>
+                  {/* <Image source={{uri: d.urlToImage}} style={{width: 100, height: 100}}/> */}
+              </CardSection>
+            </Card>
+          </TouchableOpacity>
+
         )
       })
     } else return (
@@ -54,7 +56,7 @@ export default class News extends React.Component {
     }
 
   }
-  
+
 const styles = {
   container:{
     flex: 1

@@ -7,7 +7,7 @@ import Chat from './src/components/Chat.js';
 
 const RootStack = createMaterialTopTabNavigator({
   News: News,
-  Chat: Chat
+  Chat: Chat,
 }, {
   tabBarPosition: 'bottom',
   initialRouteName: 'News',

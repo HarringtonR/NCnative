@@ -1,21 +1,15 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Login from './Login.js';
+import Chatroom from './ChatRoom.js';
+import {
+  createStackNavigator,
+  createAppContainer
+} from 'react-navigation';
 
-export default class Chat extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Chat</Text>
-      </View>
-    );
-  }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const root = createStackNavigator({
+  Login: Login,
+  Chatroom: Chatroom
 });
+
+const navigator = createAppContainer(root);
+export default navigator;
