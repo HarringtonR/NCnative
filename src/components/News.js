@@ -3,10 +3,14 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { CardSection, Card, Header } from '../common';
 import { ScrollView } from 'react-native';
 import Config from '../../config';
+
 export default class News extends React.Component {
   state = {
     apiDataLoaded: false,
-    apiData: null
+    apiData: null,
+    article: '',
+    story: 'feed'
+
   };
 
   componentDidMount(){
@@ -15,36 +19,50 @@ export default class News extends React.Component {
       .then( data => {
         let articles = data.articles
         this.setState(prevState => ({
+          apiData:articles,
           apiDataLoaded: true,
-          apiData:articles
          }))
        })
   }
 
+
   renderNews() {
-    if(this.state.apiDataLoaded) {
       return this.state.apiData.map((d, i) => {
         return (
-          <TouchableOpacity  key={i}>
-            <Card >
-              <CardSection>
-                  <Text style={styles.headerStyle}>{d.title}</Text>
-                  <Text>{d.source.name}</Text>
-                  {/* <Image source={{uri: d.urlToImage}} style={{width: 100, height: 100}}/> */}
-              </CardSection>
-            </Card>
-          </TouchableOpacity>
-
+            <TouchableOpacity  key={i} onPress={() =>
+              this.setState({
+                article: d.content,
+                story: 'article'
+              })
+            }>
+              <Card >
+                <CardSection>
+                    <Text style={styles.headerStyle}>{d.title}</Text>
+                    <Text>{d.source.name}</Text>
+                </CardSection>
+              </Card>
+            </TouchableOpacity>
         )
       })
-    } else return (
-    <CardSection>
-       <Text>Loading...</Text>
-    </CardSection>
-    )
-  }
+    }
+
+  renderStory() {
+    console.log(this.state.article)
+    return(
+            <View>
+              <TouchableOpacity>
+                <Card >
+                  <CardSection>
+                    <Text style={styles.headerStyle}>{this.state.article}</Text>
+                  </CardSection>
+                </Card>
+              </TouchableOpacity>
+            </View>
+        )
+      }
 
   render() {
+    if (this.state.apiDataLoaded && this.state.story === 'feed'){
       return (
         <View style={styles.container}>
           <Header headerText = {'News'}/>
@@ -53,9 +71,25 @@ export default class News extends React.Component {
           </ScrollView>
         </View>
       )
-    }
-
+    } else if (this.state.apiDataLoaded && this.state.story === 'article'){
+      return (
+        <View style={styles.container}>
+          <Header headerText = {'News'}/>
+          <ScrollView>
+            {this.renderStory()}
+          </ScrollView>
+        </View>
+      )
+    }  else {
+     return (
+        <CardSection>
+          <Text>Loading...</Text>
+        </CardSection>
+    )
+   }
   }
+}
+
 
 const styles = {
   container:{
@@ -65,3 +99,4 @@ const styles = {
     fontSize: 18
   }
 }
+
