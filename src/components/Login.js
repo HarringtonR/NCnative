@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { View, StyleSheet, TextInput, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, TextInput, TouchableOpacity, Text, Button } from 'react-native';
 
 class Login extends React.Component {
   state ={
@@ -17,13 +17,14 @@ onPress = () => { this.props.navigation.navigate('Chatroom', { name: this.state.
         <Text style={styles.title}>Enter your name:</Text>
         <TextInput
           style={styles.nameInput}
-          placeHolder="John Cena"
+          placeHolder="Your Name"
           value={this.state.name}
           onChangeText={this.onChangeText}
         />
         <TouchableOpacity onPress={this.onPress}>
           <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
+        <Button title='room title' onPress={() => console.log('beets')}/>
       </View>
     );
   }

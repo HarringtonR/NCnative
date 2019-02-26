@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { CardSection, Card, Header } from '../common';
-import { ScrollView } from 'react-native';
+import { ScrollView, Button } from 'react-native';
 import Config from '../../config';
 
 export default class News extends React.Component {
@@ -53,6 +53,7 @@ export default class News extends React.Component {
               <TouchableOpacity>
                 <Card >
                   <CardSection>
+                    {/* NEEED TO PASS this.state.article to the chat to create/join the room */}
                     <Text style={styles.headerStyle}>{this.state.article}</Text>
                   </CardSection>
                 </Card>
@@ -78,6 +79,10 @@ export default class News extends React.Component {
           <ScrollView>
             {this.renderStory()}
           </ScrollView>
+          <Button title='back' onPress={() =>
+          this.setState({
+            story: 'feed'
+            })} />
         </View>
       )
     }  else {
@@ -89,7 +94,6 @@ export default class News extends React.Component {
    }
   }
 }
-
 
 const styles = {
   container:{
