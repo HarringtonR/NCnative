@@ -12,7 +12,7 @@ export default class News extends React.Component {
     story: 'feed'
 
   };
-
+//load the news feed from google news api
   componentDidMount(){
     fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${Config.MY_KEY}`)
       .then( res => res.json())
@@ -25,7 +25,7 @@ export default class News extends React.Component {
        })
   }
 
-
+// component to render feed
   renderNews() {
       return this.state.apiData.map((d, i) => {
         return (
@@ -45,7 +45,7 @@ export default class News extends React.Component {
         )
       })
     }
-
+// render the specific story when clicked  > also set story for chat room?
   renderStory() {
     console.log(this.state.article)
     return(
@@ -79,7 +79,11 @@ export default class News extends React.Component {
           <ScrollView>
             {this.renderStory()}
           </ScrollView>
-          <Button title='back' onPress={() =>
+          <Button
+            title="Go to Chat"
+            onPress={() => this.props.navigation.navigate('Chat', {room: this.state.article})}
+          />
+          <Button title='All News' onPress={() =>
           this.setState({
             story: 'feed'
             })} />

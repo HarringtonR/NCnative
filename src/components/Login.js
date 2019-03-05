@@ -24,7 +24,7 @@ onPress = () => { this.props.navigation.navigate('Chatroom', { name: this.state.
         <TouchableOpacity onPress={this.onPress}>
           <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
-        <Button title='room title' onPress={() => console.log('beets')}/>
+        <Button title='room title' onPress={() => console.log(this.props.navigation.room)}/>
       </View>
     );
   }

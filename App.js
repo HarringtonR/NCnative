@@ -5,9 +5,9 @@ import {
 import News from './src/components/News.js';
 import Chat from './src/components/Chat.js';
 
-const RootStack = createMaterialTopTabNavigator({
-  News: News,
-  Chat: Chat,
+export default createAppContainer(createMaterialTopTabNavigator({
+  News: {screen: News},
+  Chat: {screen: Chat},
 }, {
   tabBarPosition: 'bottom',
   initialRouteName: 'News',
@@ -20,7 +20,4 @@ const RootStack = createMaterialTopTabNavigator({
         backgroundColor: '#303030',
     }
   },
-});
-
-const App = createAppContainer(RootStack);
-export default App;
+}));

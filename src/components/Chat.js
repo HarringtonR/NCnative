@@ -6,10 +6,7 @@ import {
 } from 'react-navigation';
 
 
-const root = createStackNavigator({
-  Login: Login,
-  Chatroom: Chatroom
-});
-
-const navigator = createAppContainer(root);
-export default navigator;
+export default createAppContainer(createStackNavigator({
+  Login: { screen: Login },
+  Chatroom: { screen: Chatroom }
+}));
