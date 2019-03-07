@@ -4,13 +4,15 @@ import { CardSection, Card, Header } from '../common';
 import { ScrollView, Button } from 'react-native';
 import Config from '../../config';
 
+
+
 export default class News extends React.Component {
   state = {
     apiDataLoaded: false,
     apiData: null,
     article: '',
-    story: 'feed'
-
+    story: 'feed',
+    title: ''
   };
 //load the news feed from google news api
   componentDidMount(){
@@ -29,12 +31,12 @@ export default class News extends React.Component {
   renderNews() {
       return this.state.apiData.map((d, i) => {
         return (
-            <TouchableOpacity  key={i} onPress={() =>
+            <TouchableOpacity  key={i} onPress={() => {
               this.setState({
                 article: d.content,
+                title: d.title,
                 story: 'article'
-              })
-            }>
+              })}}>
               <Card >
                 <CardSection>
                     <Text style={styles.headerStyle}>{d.title}</Text>
@@ -50,7 +52,9 @@ export default class News extends React.Component {
     console.log(this.state.article)
     return(
             <View>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => {this.props.navigation.navigate('Chat', {
+                room: this.state.title
+              })}}>
                 <Card >
                   <CardSection>
                     {/* NEEED TO PASS this.state.article to the chat to create/join the room */}
@@ -79,10 +83,6 @@ export default class News extends React.Component {
           <ScrollView>
             {this.renderStory()}
           </ScrollView>
-          <Button
-            title="Go to Chat"
-            onPress={() => this.props.navigation.navigate('Chat', {room: this.state.article})}
-          />
           <Button title='All News' onPress={() =>
           this.setState({
             story: 'feed'

@@ -1,13 +1,22 @@
 import {
   createMaterialTopTabNavigator,
+  createStackNavigator,
   createAppContainer
 } from 'react-navigation';
 import News from './src/components/News.js';
-import Chat from './src/components/Chat.js';
+import Login from './src/components/Login.js';
+import ChatRoom from './src/components/ChatRoom.js';
+import React from 'react'
+
+const Chat = createStackNavigator({
+  Login: { screen: props => <Login {...props} />},
+  ChatRoom: { screen: ChatRoom}
+  }
+)
 
 export default createAppContainer(createMaterialTopTabNavigator({
   News: {screen: News},
-  Chat: {screen: Chat},
+  Chat: { screen: Chat }
 }, {
   tabBarPosition: 'bottom',
   initialRouteName: 'News',
