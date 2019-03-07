@@ -9,7 +9,7 @@ import ChatRoom from './src/components/ChatRoom.js';
 import React from 'react'
 
 const Chat = createStackNavigator({
-  Login: { screen: props => <Login {...props} />},
+  Login: {screen: Login },
   ChatRoom: { screen: ChatRoom}
   }
 )

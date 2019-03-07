@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 
 import Fire from '../../Fire.js';
@@ -34,16 +34,26 @@ class Chatroom extends Component {
 
 
   render() {
+    const { navigation } = this.props;
+    const room = navigation.getParam('room', this.props.room);
+
+    console.log(room)
     return (
-    <GiftedChat
-      messages={ this.state. messages }
-      onSend={Fire.shared.send}
-      user={this.user}
-      />
+      <View style={styles.chat}>
+      <GiftedChat
+        messages={ this.state. messages }
+        onSend={Fire.shared.send}
+        user={this.user}
+        />
+      </View>
     );
   }
 }
 
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  chat: {
+    flex: 1
+  }
+});
 export default Chatroom;

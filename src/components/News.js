@@ -52,7 +52,7 @@ export default class News extends React.Component {
     console.log(this.state.article)
     return(
             <View>
-              <TouchableOpacity onPress={() => {this.props.navigation.navigate('Chat', {
+              <TouchableOpacity onPress={() => {this.props.navigation.navigate('Login', {
                 room: this.state.title
               })}}>
                 <Card >

@@ -2,13 +2,21 @@
 import React from 'react';
 import { View, StyleSheet, TextInput, TouchableOpacity, Text, Button } from 'react-native';
 
+
 export default class Login extends React.Component {
   state = {
-      name: ''
+      name: '',
+      room: ''
     }
 
 onChangeText = name => this.setState({ name });
-onPress = () => { this.props.navigation.navigate('ChatRoom', { name: this.state.name });};
+// onPress = () => { this.props.navigation.navigate('ChatRoom', { name: this.state.name, room: room });};
+
+componentDidMount(){
+  this.setState({
+    room: this.props.navigation.getParam.room
+  })
+}
 
   render() {
     const { navigation } = this.props;
@@ -23,7 +31,7 @@ onPress = () => { this.props.navigation.navigate('ChatRoom', { name: this.state.
           value={this.state.name}
           onChangeText={this.onChangeText}
         />
-        <TouchableOpacity onPress={this.onPress}>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('ChatRoom', { name: this.state.name, room: room })}>
           <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
         <Text>Room: {room}</Text>
