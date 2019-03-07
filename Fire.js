@@ -5,6 +5,7 @@ class Fire {
   constructor() {
     this.init();
     this.observeAuth();
+    this.ChatID = ''
   }
 
   init = () =>
@@ -37,7 +38,11 @@ class Fire {
   }
 
   get ref() {
-    return firebase.database().ref('messages');
+    return firebase.database().ref(`chats/${this.ChatID}/messages/`);
+  }
+
+  assignChatID(ChatID){
+    this.ChatID = ChatID
   }
 
   parse = snapshot => {

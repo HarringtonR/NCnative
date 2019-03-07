@@ -14,11 +14,20 @@ class Chatroom extends Component {
   });
 
     componentDidMount() {
-      Fire.shared.on(message =>
-        this.setState(previousState => ({
-          messages: GiftedChat.append(previousState.messages, message),
-        }))
-      );
+      const { navigation } = this.props;
+      const room = navigation.getParam('room', this.props.room);
+
+      const fireClass = Fire.shared;
+      fireClass.assignChatID(room);
+      fireClass.on(message => this.setState(previousState => ({
+        messages: GiftedChat.append(previousState.messages, message)
+      })));
+
+      // Fire.shared.on(message =>
+      //   this.setState(previousState => ({
+      //     messages: GiftedChat.append(previousState.messages, message),
+      //   }))
+      // );
     }
     componentWillUnmount() {
       Fire.shared.off();
@@ -41,7 +50,7 @@ class Chatroom extends Component {
     return (
       <View style={styles.chat}>
       <GiftedChat
-        messages={ this.state. messages }
+        messages={ this.state.messages }
         onSend={Fire.shared.send}
         user={this.user}
         />
@@ -55,5 +64,6 @@ const styles = StyleSheet.create({
   chat: {
     flex: 1
   }
+
 });
 export default Chatroom;

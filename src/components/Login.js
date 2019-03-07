@@ -34,7 +34,6 @@ componentDidMount(){
         <TouchableOpacity onPress={() => this.props.navigation.navigate('ChatRoom', { name: this.state.name, room: room })}>
           <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
-        <Text>Room: {room}</Text>
       </View>
     );
   }
