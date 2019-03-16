@@ -11,11 +11,11 @@ class Fire {
   init = () =>
     firebase.initializeApp({
       apiKey: Config.FIRE_KEY,
-      authDomain: "ncnative-b0d92.firebaseapp.com",
-      databaseURL: "https://ncnative-b0d92.firebaseio.com",
-      projectId: "ncnative-b0d92",
-      storageBucket: "ncnative-b0d92.appspot.com",
-      messagingSenderId: "355348948571"
+      authDomain: Config.authDomain,
+      databaseURL: Config.databaseURL,
+      projectId: Config.projectId,
+      storageBucket: Config.storageBucket,
+      messagingSenderId: Config.messagingSenderId
     });
 
   observeAuth = () =>
