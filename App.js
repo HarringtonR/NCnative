@@ -6,7 +6,6 @@ import {
 import News from './src/components/News.js';
 import Login from './src/components/Login.js';
 import ChatRoom from './src/components/ChatRoom.js';
-import React from 'react'
 
 const Chat = createStackNavigator({
   Login: {screen: Login },
