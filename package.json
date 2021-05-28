@@ -15,7 +15,7 @@
     "react-native-elements": "^1.0.0",
     "react-native-gifted-chat": "^0.7.2",
     "react-navigation": "^3.3.2",
-    "ws": "^7.0.0"
+    "ws": "^7.4.5"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"
